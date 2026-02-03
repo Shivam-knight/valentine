@@ -6,163 +6,151 @@
 <title>Valentine for Monika 💖</title>
 
 <style>
-:root {
-  --bg-gradient: linear-gradient(135deg, #2b1055, #b83280, #ff758c);
-  --glass-bg: rgba(255, 230, 245, 0.22);
-  --glass-border: rgba(255, 255, 255, 0.35);
-  --accent-main: #ff4f7b;
-  --accent-dark: #b83280;
-  --accent-gold: #ffd6a5;
-  --text-main: #ffffff;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap');
+
+:root{
+  --bg: linear-gradient(135deg,#2b1055,#b83280,#ff758c);
+  --glass: rgba(255,255,255,0.25);
+  --border: rgba(255,255,255,0.35);
+  --accent: #ff4f7b;
 }
 
-body {
-  margin: 0;
-  font-family: 'Comic Sans MS', cursive;
-  background: var(--bg-gradient);
-  min-height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
+body{
+  margin:0;
+  font-family:'Comic Sans MS',cursive;
+  background:var(--bg);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  padding:10px;
 }
 
 /* GLASS CARD */
-.card {
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.28),
-    rgba(255,200,220,0.18)
-  );
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  padding: 26px;
-  text-align: center;
-  width: 100%;
-  max-width: 390px;
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.25),
-    inset 0 0 30px rgba(255,255,255,0.15);
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:20px;
+  width:100%;
+  max-width:390px;
+  max-height:92vh;
+  overflow-y:auto;
+  text-align:center;
+  box-shadow:0 10px 35px rgba(0,0,0,0.3);
 }
 
-h1 {
-  color: var(--text-main);
-  font-size: 2.1em;
-  margin-bottom: 20px;
-  text-shadow: 0 3px 12px rgba(0,0,0,0.4);
+h1{
+  color:#fff;
+  font-size:2em;
+  margin-bottom:16px;
 }
 
 /* BUTTONS */
-.buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
 }
 
-button {
-  padding: 12px 24px;
-  font-size: 1em;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  font-weight: bold;
+button{
+  padding:12px 22px;
+  border-radius:14px;
+  border:none;
+  font-size:1em;
+  cursor:pointer;
+  transition:.3s;
 }
 
-/* YES */
-#yes {
-  background: linear-gradient(135deg, #ff4f7b, #ff758c);
-  color: white;
-  width: 100px;
-  box-shadow: 0 6px 20px rgba(255,79,123,0.6);
-  animation: pulse 1.6s infinite;
+#yes{
+  background:linear-gradient(135deg,#ff4f7b,#ff758c);
+  color:white;
+  width:100px;
+  animation:pulse 1.6s infinite;
 }
 
-/* NO */
-#no {
-  background: linear-gradient(135deg, #f3e7e9, #e3d1d8);
-  color: var(--accent-dark);
-  border: 2px solid var(--accent-dark);
-  position: relative;
+#no{
+  background:#f3e7e9;
+  color:#b83280;
+  border:2px solid #b83280;
 }
 
-@keyframes pulse {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.1)}
 }
 
 /* TEDDY */
-#teddy {
-  display: none;
-  margin-top: 15px;
+#teddy{
+  display:none;
+  margin-top:12px;
 }
-#teddy img {
-  width: 120px;
-  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.4));
-}
-
-/* FLOATING HEARTS */
-.heart {
-  position: absolute;
-  animation: float 4.5s linear infinite;
-  user-select: none;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
-}
-
-@keyframes float {
-  from { transform: translateY(0); opacity:1; }
-  to { transform: translateY(-100vh); opacity:0; }
+#teddy img{
+  width:110px;
 }
 
 /* THANK YOU */
-#thankYou {
-  display: none;
+#thankYou{
+  display:none;
+}
+#thankYou img{
+  width:70%;
+  max-width:220px;
+  border-radius:16px;
+  margin-top:10px;
 }
 
-#thankYou img {
-  width: 70%;
-  max-width: 220px;
-  border-radius: 18px;
-  margin-top: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+/* NOTES */
+#notes{
+  display:none;
+  margin-top:18px;
 }
 
-/* VALENTINE NOTES */
-#notes {
-  display: none;
-  margin-top: 22px;
+.note{
+  background:rgba(255,255,255,0.3);
+  border-radius:14px;
+  padding:12px;
+  margin:10px 0;
+  color:white;
+  cursor:pointer;
 }
 
-#notes h2 {
-  color: var(--accent-gold);
-  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+/* PAPER LETTER */
+.letter{
+  display:none;
+  margin-top:10px;
+  background:#fffaf0;
+  color:#3b2f2f;
+  padding:14px;
+  border-radius:10px;
+  font-family:'Dancing Script',cursive;
+  font-size:1.05em;
+  line-height:1.5;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.15),
+    inset 0 0 20px rgba(0,0,0,0.05);
+  transform:rotate(-1deg);
+  animation:paperOpen .4s ease;
 }
 
-.note {
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.35),
-    rgba(255,215,230,0.25)
-  );
-  backdrop-filter: blur(10px);
-  border-radius: 14px;
-  padding: 12px;
-  margin: 10px 0;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+@keyframes paperOpen{
+  from{opacity:0;transform:scale(.95) rotate(0deg)}
+  to{opacity:1;transform:scale(1) rotate(-1deg)}
 }
 
-.letter {
-  display: none;
-  margin-top: 8px;
-  font-size: 0.95em;
-  color: #fff8f8;
-  line-height: 1.4;
+/* HEARTS */
+.heart{
+  position:absolute;
+  animation:float 4s linear infinite;
+  user-select:none;
+}
+
+@keyframes float{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-100vh);opacity:0}
 }
 </style>
 </head>
@@ -188,7 +176,7 @@ button {
 </div>
 
 <div id="notes">
-  <h2>💌 Valentine Week Letters</h2>
+  <h2 style="color:white;">💌 Valentine Week Letters</h2>
 
   <div class="note">🌹 Rose Day
     <div class="letter">You are the most beautiful rose in my life 🌹</div>
@@ -219,47 +207,46 @@ button {
 </div>
 
 <script>
-const yesBtn = document.getElementById("yes");
-const noBtn = document.getElementById("no");
-const teddy = document.getElementById("teddy");
-const buttonBox = document.getElementById("buttonBox");
-const thankYou = document.getElementById("thankYou");
-const notes = document.getElementById("notes");
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const teddy=document.getElementById("teddy");
+const box=document.getElementById("buttonBox");
+const thank=document.getElementById("thankYou");
+const notes=document.getElementById("notes");
 
-let yesWidth = 100;
+let w=100;
 
-// Floating hearts
+// hearts
 setInterval(()=>{
-  const h = document.createElement("div");
+  const h=document.createElement("div");
   h.className="heart";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=18+Math.random()*22+"px";
-  h.innerText=Math.random()>0.5?"❤️":"💖";
+  h.style.fontSize=18+Math.random()*20+"px";
+  h.innerText="❤️";
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),4500);
-},500);
+  setTimeout(()=>h.remove(),4000);
+},600);
 
-// NO click
-noBtn.onclick = () => {
-  yesWidth += 25;
-  yesBtn.style.width = yesWidth+"px";
-  teddy.style.display = "block";
+// no click
+no.onclick=()=>{
+  w+=25;
+  yes.style.width=w+"px";
+  teddy.style.display="block";
 };
 
-// YES click
-yesBtn.onclick = () => {
-  buttonBox.style.display="none";
+// yes click
+yes.onclick=()=>{
+  box.style.display="none";
   teddy.style.display="none";
-  thankYou.style.display="block";
+  thank.style.display="block";
   notes.style.display="block";
 };
 
-// Notes toggle
-document.querySelectorAll(".note").forEach(note=>{
-  note.onclick = ()=>{
-    const letter = note.querySelector(".letter");
-    letter.style.display =
-      letter.style.display === "block" ? "none" : "block";
+// letter toggle
+document.querySelectorAll(".note").forEach(n=>{
+  n.onclick=()=>{
+    const l=n.querySelector(".letter");
+    l.style.display=l.style.display==="block"?"none":"block";
   };
 });
 </script>
