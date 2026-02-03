@@ -6,7 +6,6 @@
 <title>Valentine for Monika 💖</title>
 
 <style>
-/* (CSS unchanged – keeping your original code) */
 :root {
   --glass-bg: rgba(255,255,255,0.25);
   --glass-border: rgba(255,255,255,0.3);
@@ -24,30 +23,41 @@ body {
   padding: 10px;
 }
 
+/* GLASS CARD */
 .card {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 25px;
   text-align: center;
-  max-width: 380px;
   width: 100%;
+  max-width: 380px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
-h1 { color: white; }
+h1 {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
 
+/* BUTTONS */
 .buttons {
   display: flex;
   gap: 15px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 button {
   padding: 12px 22px;
+  font-size: 1em;
   border-radius: 12px;
   border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 #yes {
@@ -61,23 +71,57 @@ button {
   background: white;
   color: #ff4f7b;
   border: 2px solid #ff4f7b;
+  position: relative;
 }
 
 @keyframes pulse {
+  0%,100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
 
+/* TEDDY */
+#teddy {
+  display: none;
+  margin-top: 15px;
+}
+
+#teddy img {
+  width: 120px;
+}
+
+/* HEARTS */
 .heart {
   position: absolute;
   animation: float 4s linear infinite;
+  user-select: none;
 }
 
 @keyframes float {
-  to { transform: translateY(-100vh); opacity: 0; }
+  from { transform: translateY(0); opacity:1; }
+  to { transform: translateY(-100vh); opacity:0; }
+}
+
+/* THANK YOU */
+#thankYou {
+  display: none;
+}
+
+#thankYou img {
+  width: 70%;
+  max-width: 220px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* VALENTINE NOTES */
+#notes {
+  display: none;
+  margin-top: 20px;
 }
 
 .note {
   background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 10px;
   margin: 8px 0;
@@ -85,46 +129,70 @@ button {
   cursor: pointer;
 }
 
-.letter { display: none; }
+.letter {
+  display: none;
+  margin-top: 8px;
+  font-size: 0.9em;
+}
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Romantic Background Music -->
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_6e35f0c75b.mp3" type="audio/mpeg">
-</audio>
-
 <div class="card">
-  <h1>Will you be my Valentine, Monika? 💘</h1>
 
-  <div class="buttons" id="buttonBox">
-    <button id="yes">Yes</button>
-    <button id="no">No</button>
+<h1 id="title">Will you be my Valentine, Monika? 💘</h1>
+
+<div class="buttons" id="buttonBox">
+  <button id="yes">Yes</button>
+  <button id="no">No</button>
+</div>
+
+<div id="teddy">
+  <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="angry teddy">
+</div>
+
+<div id="thankYou">
+  <h1>Thank you Monika 💖</h1>
+  <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif">
+</div>
+
+<div id="notes">
+  <h2 style="color:white;">💌 Valentine Week Letters</h2>
+
+  <div class="note">🌹 Rose Day
+    <div class="letter">You are the most beautiful rose in my life 🌹</div>
   </div>
 
-  <div id="teddy" style="display:none;margin-top:15px;">
-    <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" width="120">
+  <div class="note">💍 Propose Day
+    <div class="letter">I choose you today, tomorrow, and always 💍</div>
   </div>
 
-  <div id="thankYou" style="display:none;">
-    <h1>Thank you Monika 💖</h1>
-    <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" width="200">
+  <div class="note">🍫 Chocolate Day
+    <div class="letter">Life with you is sweeter than chocolate 🍫</div>
   </div>
 
-  <div id="notes" style="display:none;">
-    <h2 style="color:white;">💌 Valentine Week Letters</h2>
-
-    <div class="note">🌹 Rose Day<div class="letter">You are my forever rose 🌹</div></div>
-    <div class="note">💍 Propose Day<div class="letter">I choose you forever 💍</div></div>
-    <div class="note">🍫 Chocolate Day<div class="letter">Life is sweeter with you 🍫</div></div>
-    <div class="note">🧸 Teddy Day<div class="letter">I’m always your teddy 🧸</div></div>
-    <div class="note">🤝 Promise Day<div class="letter">I promise you my heart 🤍</div></div>
-    <div class="note">🤗 Hug Day<div class="letter">My favorite place is you 🤗</div></div>
-    <div class="note">💋 Kiss Day<div class="letter">Every kiss feels magical 💋</div></div>
-    <div class="note">❤️ Valentine’s Day<div class="letter">You are my forever ❤️</div></div>
+  <div class="note">🧸 Teddy Day
+    <div class="letter">Whenever you hug a teddy, remember I’m hugging you 🧸</div>
   </div>
+
+  <div class="note">🤝 Promise Day
+    <div class="letter">I promise to stand by you forever 🤍</div>
+  </div>
+
+  <div class="note">🤗 Hug Day
+    <div class="letter">My favorite place is in your arms 🤗</div>
+  </div>
+
+  <div class="note">💋 Kiss Day
+    <div class="letter">Every kiss with you feels magical 💋</div>
+  </div>
+
+  <div class="note">❤️ Valentine’s Day
+    <div class="letter">You are my forever Valentine ❤️</div>
+  </div>
+</div>
+
 </div>
 
 <script>
@@ -134,46 +202,40 @@ const teddy = document.getElementById("teddy");
 const buttonBox = document.getElementById("buttonBox");
 const thankYou = document.getElementById("thankYou");
 const notes = document.getElementById("notes");
-const music = document.getElementById("bgMusic");
 
 let yesWidth = 100;
 
-/* 🎵 Start music on first user tap (mobile-safe) */
-document.body.addEventListener("click", () => {
-  music.play().catch(()=>{});
-}, { once: true });
-
-/* Floating hearts */
-setInterval(() => {
+// Floating hearts
+setInterval(()=>{
   const h = document.createElement("div");
-  h.className = "heart";
-  h.innerText = "❤️";
-  h.style.left = Math.random()*100+"vw";
-  h.style.fontSize = 20+Math.random()*20+"px";
+  h.className="heart";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=20+Math.random()*20+"px";
+  h.innerText="❤️";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),4000);
-}, 500);
+},500);
 
-/* NO click */
+// NO click
 noBtn.onclick = () => {
   yesWidth += 25;
-  yesBtn.style.width = yesWidth + "px";
+  yesBtn.style.width = yesWidth+"px";
   teddy.style.display = "block";
 };
 
-/* YES click */
+// YES click
 yesBtn.onclick = () => {
-  buttonBox.style.display = "none";
-  teddy.style.display = "none";
-  thankYou.style.display = "block";
-  notes.style.display = "block";
+  buttonBox.style.display="none";
+  teddy.style.display="none";
+  thankYou.style.display="block";
+  notes.style.display="block";
 };
 
-/* Notes toggle */
+// Notes reveal
 document.querySelectorAll(".note").forEach(note=>{
   note.onclick = ()=>{
-    const l = note.querySelector(".letter");
-    l.style.display = l.style.display==="block"?"none":"block";
+    const letter = note.querySelector(".letter");
+    letter.style.display = letter.style.display==="block"?"none":"block";
   };
 });
 </script>
