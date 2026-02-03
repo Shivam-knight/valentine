@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine for Monika 💖</title>
 <style>
   body {
@@ -12,29 +13,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     flex-direction: column;
     text-align: center;
+    padding: 10px;
   }
   h1 {
     color: #fff;
-    font-size: 3em;
-    margin-bottom: 30px;
+    font-size: 2.5em;
+    margin-bottom: 20px;
     text-shadow: 2px 2px 5px #ff6f91;
+    word-wrap: break-word;
   }
   .buttons {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
+    justify-content: center;
   }
   button {
-    padding: 15px 30px;
-    font-size: 1.2em;
+    padding: 12px 25px;
+    font-size: 1.1em;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
+    min-width: 80px;
   }
   #yes {
     background-color: #ff6f91;
@@ -58,8 +63,10 @@
     align-items: center;
   }
   #thankYou img {
-    width: 200px;
-    margin-top: 20px;
+    width: 50vw;
+    max-width: 250px;
+    margin-top: 15px;
+    border-radius: 15px;
   }
   .heart {
     position: absolute;
@@ -77,6 +84,10 @@
     white-space: nowrap;
     overflow: hidden;
   }
+  @media (max-width: 480px) {
+    h1 { font-size: 2em; }
+    button { font-size: 1em; padding: 10px 20px; min-width: 70px; }
+  }
 </style>
 </head>
 <body>
@@ -90,7 +101,7 @@
 
 <div id="thankYou">
   <h1 class="typing" id="thankMsg"></h1>
-  <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="cute gif">
+  <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" alt="cute gif">
   <img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" alt="cute gif">
 </div>
 
@@ -112,7 +123,7 @@
     "Forever and always ❤️"
   ];
 
-  // Create floating hearts
+  // Floating hearts
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
@@ -124,10 +135,10 @@
   }
   setInterval(createHeart, 500);
 
-  // Move No button randomly on hover
+  // No button moves randomly but stays in viewport
   noBtn.addEventListener('mouseenter', () => {
-    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
     noBtn.style.position = 'absolute';
     noBtn.style.left = x + 'px';
     noBtn.style.top = y + 'px';
@@ -153,7 +164,8 @@
       }
     }
     typeMsg();
-    // Confetti effect using emojis
+
+    // Confetti hearts
     for(let j=0;j<100;j++){
       const conf = document.createElement('div');
       conf.style.position='absolute';
