@@ -10,18 +10,16 @@
   --bg-dark:#0f0b14;
   --bg-wine:#2a0f1e;
   --accent:#c96b8a;
-  --accent-soft:#e6b8c7;
   --text-main:#f6e9ef;
   --text-muted:#d7b9c5;
-  --glass-dark:rgba(35,15,30,0.65);
-  --border-soft:rgba(255,255,255,0.12);
+  --glass:rgba(35,15,30,0.65);
+  --border:rgba(255,255,255,0.12);
 }
 
 body{
   margin:0;
   min-height:100vh;
-  background:
-    radial-gradient(circle at top,#40203a,#0f0b14 70%);
+  background:radial-gradient(circle at top,#40203a,#0f0b14 70%);
   font-family:'Segoe UI','Comic Sans MS',cursive;
   display:flex;
   justify-content:center;
@@ -35,28 +33,19 @@ body{
 .card{
   width:100%;
   max-width:380px;
-  background:linear-gradient(
-    180deg,
-    rgba(40,18,32,0.75),
-    rgba(15,8,15,0.9)
-  );
+  background:linear-gradient(180deg,rgba(40,18,32,.75),rgba(15,8,15,.9));
   backdrop-filter:blur(16px);
   border-radius:26px;
   padding:28px 22px;
-  border:1px solid var(--border-soft);
-  box-shadow:
-    0 40px 80px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.08);
+  border:1px solid var(--border);
+  box-shadow:0 40px 80px rgba(0,0,0,.6);
   text-align:center;
 }
 
-/* HEADINGS */
 h1{
-  font-size:2.05em;
-  font-weight:600;
-  color:var(--text-main);
+  font-size:2em;
   margin-bottom:22px;
-  letter-spacing:0.3px;
+  color:var(--text-main);
 }
 
 /* BUTTONS */
@@ -74,26 +63,21 @@ button{
   border:none;
   cursor:pointer;
   font-weight:600;
-  transition:all .3s ease;
+  transition:.3s;
 }
 
-/* YES */
 #yes{
   background:linear-gradient(135deg,#e08aa5,#b85673);
   color:#1a0c12;
   width:110px;
-  box-shadow:
-    0 12px 30px rgba(201,107,138,.55);
+  box-shadow:0 12px 30px rgba(201,107,138,.55);
   animation:pulse 1.6s infinite;
 }
 
-#yes:active{transform:scale(.96)}
-
-/* NO */
 #no{
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,.08);
   color:var(--text-main);
-  border:1px solid rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,.18);
 }
 
 @keyframes pulse{
@@ -101,17 +85,11 @@ button{
 }
 
 /* TEDDY */
-#teddy{
-  display:none;
-  margin-top:18px;
-}
-#teddy img{
-  width:120px;
-  filter:drop-shadow(0 10px 25px rgba(0,0,0,.5));
-}
+#teddy{display:none;margin-top:18px}
+#teddy img{width:120px}
 
-/* HEARTS */
-.heart{
+/* FLOATING EMOJIS */
+.floating{
   position:absolute;
   animation:float 6s linear infinite;
   opacity:.85;
@@ -123,9 +101,7 @@ button{
 }
 
 /* THANK YOU */
-#thankYou{
-  display:none;
-}
+#thankYou{display:none}
 #thankYou img{
   width:70%;
   max-width:220px;
@@ -134,17 +110,10 @@ button{
 }
 
 /* NOTES */
-#notes{
-  display:none;
-  margin-top:24px;
-}
+#notes{display:none;margin-top:24px}
 
 .note{
-  background:linear-gradient(
-    180deg,
-    rgba(255,255,255,0.08),
-    rgba(255,255,255,0.04)
-  );
+  background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
   border-radius:16px;
   padding:14px 16px;
   margin:12px 0;
@@ -153,27 +122,19 @@ button{
   color:var(--text-main);
 }
 
-.note:active{transform:scale(.97)}
-
 .letter{
   display:none;
   margin-top:10px;
   font-size:.95em;
-  line-height:1.55;
   color:var(--text-muted);
-}
-
-/* MOBILE */
-@media(max-width:420px){
-  h1{font-size:1.9em}
-  button{font-size:1em}
+  line-height:1.55;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Music -->
+<!-- 🎵 Romantic Music -->
 <audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_6e35f0c75b.mp3">
 </audio>
@@ -199,14 +160,14 @@ button{
 <div id="notes">
   <h2>💌 Valentine Week</h2>
 
-  <div class="note">🌹 Rose Day<div class="letter">You are my forever rose 🌹</div></div>
-  <div class="note">💍 Propose Day<div class="letter">I choose you, always 💍</div></div>
-  <div class="note">🍫 Chocolate Day<div class="letter">Life is sweeter with you 🍫</div></div>
-  <div class="note">🧸 Teddy Day<div class="letter">I’m always your teddy 🧸</div></div>
-  <div class="note">🤝 Promise Day<div class="letter">I promise you my heart 🤍</div></div>
-  <div class="note">🤗 Hug Day<div class="letter">My safest place is you 🤗</div></div>
-  <div class="note">💋 Kiss Day<div class="letter">Every kiss is magic 💋</div></div>
-  <div class="note">❤️ Valentine’s Day<div class="letter">You are my forever ❤️</div></div>
+  <div class="note" data-emoji="🌹">🌹 Rose Day<div class="letter">You are my forever rose 🌹</div></div>
+  <div class="note" data-emoji="💍">💍 Propose Day<div class="letter">I choose you, always 💍</div></div>
+  <div class="note" data-emoji="🍫">🍫 Chocolate Day<div class="letter">Life is sweeter with you 🍫</div></div>
+  <div class="note" data-emoji="🧸">🧸 Teddy Day<div class="letter">I’m always your teddy 🧸</div></div>
+  <div class="note" data-emoji="🤍">🤝 Promise Day<div class="letter">I promise you my heart 🤍</div></div>
+  <div class="note" data-emoji="🤗">🤗 Hug Day<div class="letter">My safest place is you 🤗</div></div>
+  <div class="note" data-emoji="💋">💋 Kiss Day<div class="letter">Every kiss is magic 💋</div></div>
+  <div class="note" data-emoji="❤️">❤️ Valentine’s Day<div class="letter">You are my forever ❤️</div></div>
 </div>
 
 </div>
@@ -221,32 +182,33 @@ const notes=document.getElementById("notes");
 const music=document.getElementById("bgMusic");
 
 let yesWidth=110;
+let currentEmoji="❤️";
 
-/* Start music */
+/* 🎵 music start */
 document.body.addEventListener("click",()=>{
   music.volume=.35;
   music.play().catch(()=>{});
 },{once:true});
 
-/* Floating hearts */
+/* 🌸 floating system */
 setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerText="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=18+Math.random()*22+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),6000);
+  const e=document.createElement("div");
+  e.className="floating";
+  e.innerText=currentEmoji;
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=18+Math.random()*22+"px";
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),6000);
 },700);
 
-/* NO */
+/* ❌ NO */
 noBtn.onclick=()=>{
   yesWidth+=28;
   yesBtn.style.width=yesWidth+"px";
   teddy.style.display="block";
 };
 
-/* YES */
+/* ✅ YES */
 yesBtn.onclick=()=>{
   buttonBox.style.display="none";
   teddy.style.display="none";
@@ -254,11 +216,12 @@ yesBtn.onclick=()=>{
   notes.style.display="block";
 };
 
-/* Notes */
-document.querySelectorAll(".note").forEach(n=>{
-  n.onclick=()=>{
-    const l=n.querySelector(".letter");
-    l.style.display=l.style.display==="block"?"none":"block";
+/* 💌 Letters */
+document.querySelectorAll(".note").forEach(note=>{
+  note.onclick=()=>{
+    const letter=note.querySelector(".letter");
+    letter.style.display=letter.style.display==="block"?"none":"block";
+    currentEmoji=note.dataset.emoji;
   };
 });
 </script>
