@@ -1,94 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Valentine for Monika 💖</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            text-align: center;
-        }
-        h1 {
-            color: #fff;
-            font-size: 3em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 5px #ff6f91;
-        }
-        .buttons {
-            display: flex;
-            gap: 20px;
-        }
-        button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        #yes {
-            background-color: #ff6f91;
-            color: white;
-            width: 100px;
-        }
-        #no {
-            background-color: #fff;
-            color: #ff6f91;
-            border: 2px solid #ff6f91;
-        }
-        #thankYou {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-        }
-        #thankYou img {
-            width: 200px;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Valentine for Monika 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+  }
+  h1 {
+    color: #fff;
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px #ff6f91;
+  }
+  .buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  #yes {
+    background-color: #ff6f91;
+    color: white;
+    width: 100px;
+    animation: pulse 1.5s infinite;
+  }
+  #no {
+    background-color: #fff;
+    color: #ff6f91;
+    border: 2px solid #ff6f91;
+    position: relative;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  #thankYou {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  #thankYou img {
+    width: 200px;
+    margin-top: 20px;
+  }
+  .heart {
+    position: absolute;
+    color: red;
+    font-size: 24px;
+    animation: float 4s linear infinite;
+    user-select: none;
+  }
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity:1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity:0; }
+  }
+  .typing {
+    border-right: .1em solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+</style>
 </head>
 <body>
 
-    <h1>Will you be my Valentine, Monika? 💘</h1>
-    <div class="buttons" id="buttonContainer">
-        <button id="yes">Yes</button>
-        <button id="no">No</button>
-    </div>
+<h1>Will you be my Valentine, Monika? 💘</h1>
 
-    <div id="thankYou">
-        <h1>Thank you, Monika! 💖</h1>
-        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="cute gif">
-        <img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" alt="cute gif">
-    </div>
+<div class="buttons" id="buttonContainer">
+  <button id="yes">Yes</button>
+  <button id="no">No</button>
+</div>
 
-    <script>
-        const yesBtn = document.getElementById('yes');
-        const noBtn = document.getElementById('no');
-        const buttonContainer = document.getElementById('buttonContainer');
-        const thankYou = document.getElementById('thankYou');
+<div id="thankYou">
+  <h1 class="typing" id="thankMsg"></h1>
+  <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="cute gif">
+  <img src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" alt="cute gif">
+</div>
 
-        let yesWidth = 100; // initial width in px
+<audio id="clickSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
 
-        noBtn.addEventListener('click', () => {
-            // increase Yes button width by 20px each time No is clicked
-            yesWidth += 20;
-            yesBtn.style.width = yesWidth + 'px';
-        });
+<script>
+  const yesBtn = document.getElementById('yes');
+  const noBtn = document.getElementById('no');
+  const buttonContainer = document.getElementById('buttonContainer');
+  const thankYou = document.getElementById('thankYou');
+  const thankMsg = document.getElementById('thankMsg');
+  const clickSound = document.getElementById('clickSound');
 
-        yesBtn.addEventListener('click', () => {
-            // Hide buttons and show thank you
-            buttonContainer.style.display = 'none';
-            thankYou.style.display = 'flex';
-        });
-    </script>
+  let yesWidth = 100;
+  const increment = 20;
+  const messages = [
+    "I knew you’d say yes! 💖",
+    "You make my heart skip beats 😘",
+    "Forever and always ❤️"
+  ];
+
+  // Create floating hearts
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.fontSize = 20 + Math.random() * 30 + 'px';
+    heart.innerText = '❤️';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+  setInterval(createHeart, 500);
+
+  // Move No button randomly on hover
+  noBtn.addEventListener('mouseenter', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  });
+
+  // Increase Yes button on No click
+  noBtn.addEventListener('click', () => {
+    yesWidth += increment;
+    yesBtn.style.width = yesWidth + 'px';
+    clickSound.play();
+  });
+
+  // Show Thank You and animated message on Yes click
+  yesBtn.addEventListener('click', () => {
+    buttonContainer.style.display = 'none';
+    thankYou.style.display = 'flex';
+    let i = 0;
+    function typeMsg() {
+      if (i < messages.join(" ").length) {
+        thankMsg.innerText = messages.join(" ").slice(0, i+1);
+        i++;
+        setTimeout(typeMsg, 100);
+      }
+    }
+    typeMsg();
+    // Confetti effect using emojis
+    for(let j=0;j<100;j++){
+      const conf = document.createElement('div');
+      conf.style.position='absolute';
+      conf.style.left=Math.random()*window.innerWidth+'px';
+      conf.style.top=Math.random()*window.innerHeight+'px';
+      conf.style.fontSize=(10+Math.random()*20)+'px';
+      conf.innerText = '💖';
+      document.body.appendChild(conf);
+      setTimeout(()=>conf.remove(),3000);
+    }
+  });
+</script>
+
 </body>
 </html>
-
