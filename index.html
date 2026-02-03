@@ -6,249 +6,226 @@
 <title>Valentine for Monika 💖</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap');
-
-:root{
-  --bg: linear-gradient(135deg,#2b1055,#b83280,#ff758c);
-  --glass: rgba(255,255,255,0.25);
-  --border: rgba(255,255,255,0.35);
-  --accent: #ff4f7b;
-}
-
 body{
   margin:0;
   font-family:'Comic Sans MS',cursive;
-  background:var(--bg);
-  min-height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+}
+
+/* INTRO */
+#intro{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow:hidden;
-  padding:10px;
+  z-index:999;
+}
+#intro h1{
+  color:white;
+  font-size:2.5em;
 }
 
 /* GLASS CARD */
 .card{
-  background:var(--glass);
+  display:none;
+  margin:auto;
+  margin-top:10vh;
+  width:90%;
+  max-width:380px;
+  background:rgba(255,255,255,.25);
   backdrop-filter:blur(14px);
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:20px;
-  width:100%;
-  max-width:390px;
-  max-height:92vh;
-  overflow-y:auto;
+  border-radius:20px;
+  padding:25px;
   text-align:center;
-  box-shadow:0 10px 35px rgba(0,0,0,0.3);
-}
-
-h1{
-  color:#fff;
-  font-size:2em;
-  margin-bottom:16px;
+  color:white;
+  box-shadow:0 10px 40px rgba(0,0,0,.2);
 }
 
 /* BUTTONS */
 .buttons{
   display:flex;
   justify-content:center;
-  gap:14px;
+  gap:15px;
   flex-wrap:wrap;
 }
-
 button{
   padding:12px 22px;
-  border-radius:14px;
+  border-radius:12px;
   border:none;
   font-size:1em;
-  cursor:pointer;
-  transition:.3s;
 }
-
 #yes{
-  background:linear-gradient(135deg,#ff4f7b,#ff758c);
+  background:#ff4f7b;
   color:white;
   width:100px;
-  animation:pulse 1.6s infinite;
+  animation:pulse 1.5s infinite;
 }
-
 #no{
-  background:#f3e7e9;
-  color:#b83280;
-  border:2px solid #b83280;
+  background:white;
+  color:#ff4f7b;
+  border:2px solid #ff4f7b;
 }
 
 @keyframes pulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.1)}
+  50%{transform:scale(1.1);}
 }
 
 /* TEDDY */
-#teddy{
-  display:none;
-  margin-top:12px;
-}
-#teddy img{
-  width:110px;
-}
-
-/* THANK YOU */
-#thankYou{
-  display:none;
-}
-#thankYou img{
-  width:70%;
-  max-width:220px;
-  border-radius:16px;
-  margin-top:10px;
-}
+#teddy img{width:120px;margin-top:10px}
 
 /* NOTES */
-#notes{
-  display:none;
-  margin-top:18px;
-}
-
 .note{
-  background:rgba(255,255,255,0.3);
-  border-radius:14px;
-  padding:12px;
-  margin:10px 0;
-  color:white;
+  margin:8px 0;
+  background:rgba(255,255,255,.3);
+  padding:10px;
+  border-radius:12px;
   cursor:pointer;
 }
+.letter{display:none;font-size:.9em;margin-top:6px}
 
-/* PAPER LETTER */
-.letter{
-  display:none;
-  margin-top:10px;
-  background:#fffaf0;
-  color:#3b2f2f;
-  padding:14px;
-  border-radius:10px;
-  font-family:'Dancing Script',cursive;
-  font-size:1.05em;
-  line-height:1.5;
-  box-shadow:
-    0 4px 8px rgba(0,0,0,0.15),
-    inset 0 0 20px rgba(0,0,0,0.05);
-  transform:rotate(-1deg);
-  animation:paperOpen .4s ease;
-}
-
-@keyframes paperOpen{
-  from{opacity:0;transform:scale(.95) rotate(0deg)}
-  to{opacity:1;transform:scale(1) rotate(-1deg)}
-}
-
-/* HEARTS */
-.heart{
+/* FLOATING */
+.float{
   position:absolute;
-  animation:float 4s linear infinite;
-  user-select:none;
+  animation:floatUp 4s linear forwards;
 }
-
-@keyframes float{
+@keyframes floatUp{
   from{transform:translateY(0);opacity:1}
   to{transform:translateY(-100vh);opacity:0}
+}
+
+/* OVERLAY */
+#overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:888;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- INTRO -->
+<div id="intro"><h1>💖 For Monika 💖</h1></div>
 
-<h1>Will you be my Valentine, Monika? 💘</h1>
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_6e35f0c75b.mp3">
+</audio>
 
-<div class="buttons" id="buttonBox">
+<!-- MAIN -->
+<div class="card" id="card">
+<h1>Will you be my Valentine? 💘</h1>
+
+<div class="buttons" id="btnBox">
   <button id="yes">Yes</button>
   <button id="no">No</button>
 </div>
 
-<div id="teddy">
+<div id="teddy" style="display:none">
   <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif">
 </div>
 
-<div id="thankYou">
-  <h1>Thank you Monika 💖</h1>
-  <img src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif">
-</div>
+<div id="notes" style="display:none">
+<h2>💌 Valentine Week</h2>
 
-<div id="notes">
-  <h2 style="color:white;">💌 Valentine Week Letters</h2>
+<div class="note" data-emoji="🌹">Rose Day
+<div class="letter">You are my forever rose 🌹</div></div>
 
-  <div class="note">🌹 Rose Day
-    <div class="letter">You are the most beautiful rose in my life 🌹</div>
-  </div>
-  <div class="note">💍 Propose Day
-    <div class="letter">I choose you today, tomorrow, and always 💍</div>
-  </div>
-  <div class="note">🍫 Chocolate Day
-    <div class="letter">Life with you is sweeter than chocolate 🍫</div>
-  </div>
-  <div class="note">🧸 Teddy Day
-    <div class="letter">Whenever you hug a teddy, remember I’m hugging you 🧸</div>
-  </div>
-  <div class="note">🤝 Promise Day
-    <div class="letter">I promise to stand by you forever 🤍</div>
-  </div>
-  <div class="note">🤗 Hug Day
-    <div class="letter">My favorite place is in your arms 🤗</div>
-  </div>
-  <div class="note">💋 Kiss Day
-    <div class="letter">Every kiss with you feels magical 💋</div>
-  </div>
-  <div class="note">❤️ Valentine’s Day
-    <div class="letter">You are my forever Valentine ❤️</div>
-  </div>
-</div>
+<div class="note" data-emoji="💍">Propose Day
+<div class="letter">I choose you forever 💍</div></div>
+
+<div class="note" data-emoji="🍫">Chocolate Day
+<div class="letter">Life is sweeter with you 🍫</div></div>
+
+<div class="note" data-emoji="🧸">Teddy Day
+<div class="letter">I’m your teddy always 🧸</div></div>
+
+<div class="note" data-emoji="🤝">Promise Day
+<div class="letter">I promise you my heart 🤍</div></div>
+
+<div class="note" data-emoji="🤗">Hug Day
+<div class="letter">My favorite place is your arms 🤗</div></div>
+
+<div class="note" data-emoji="💋">Kiss Day
+<div class="letter">Every kiss feels magical 💋</div></div>
+
+<div class="note" data-emoji="❤️">Valentine’s Day
+<div class="letter">You are my forever Valentine ❤️</div></div>
 
 </div>
+</div>
+
+<div id="overlay"></div>
 
 <script>
+const intro=document.getElementById("intro");
+const card=document.getElementById("card");
+const music=document.getElementById("music");
 const yes=document.getElementById("yes");
 const no=document.getElementById("no");
 const teddy=document.getElementById("teddy");
-const box=document.getElementById("buttonBox");
-const thank=document.getElementById("thankYou");
 const notes=document.getElementById("notes");
+const overlay=document.getElementById("overlay");
 
-let w=100;
+let yesW=100;
 
-// hearts
-setInterval(()=>{
-  const h=document.createElement("div");
-  h.className="heart";
-  h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=18+Math.random()*20+"px";
-  h.innerText="❤️";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),4000);
-},600);
+// INTRO HEARTS
+for(let i=0;i<80;i++){
+ let h=document.createElement("div");
+ h.className="float";
+ h.innerText="❤️";
+ h.style.left=Math.random()*100+"vw";
+ h.style.fontSize=20+Math.random()*20+"px";
+ intro.appendChild(h);
+}
 
-// no click
+// END INTRO
+setTimeout(()=>{
+ intro.style.display="none";
+ card.style.display="block";
+ document.body.addEventListener("click",()=>music.play(),{once:true});
+},3000);
+
+// NO CLICK
 no.onclick=()=>{
-  w+=25;
-  yes.style.width=w+"px";
-  teddy.style.display="block";
+ yesW+=25;
+ yes.style.width=yesW+"px";
+ teddy.style.display="block";
 };
 
-// yes click
+// YES CLICK
 yes.onclick=()=>{
-  box.style.display="none";
-  teddy.style.display="none";
-  thank.style.display="block";
-  notes.style.display="block";
+ document.getElementById("btnBox").style.display="none";
+ teddy.style.display="none";
+ notes.style.display="block";
 };
 
-// letter toggle
+// LETTER EFFECT
 document.querySelectorAll(".note").forEach(n=>{
-  n.onclick=()=>{
-    const l=n.querySelector(".letter");
-    l.style.display=l.style.display==="block"?"none":"block";
-  };
+ n.onclick=()=>{
+  const l=n.querySelector(".letter");
+  l.style.display=l.style.display==="block"?"none":"block";
+  showOverlay(n.dataset.emoji);
+ }
 });
+
+function showOverlay(emoji){
+ overlay.style.display="block";
+ overlay.innerHTML="";
+ for(let i=0;i<40;i++){
+  let e=document.createElement("div");
+  e.className="float";
+  e.innerText=emoji;
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=25+Math.random()*25+"px";
+  overlay.appendChild(e);
+ }
+ setTimeout(()=>overlay.style.display="none",2000);
+}
 </script>
 
 </body>
